@@ -11,19 +11,42 @@ import Foundation
 struct Challenge
 {
     
-    var matrix : [[Int]]
+    var matrix : [[Any]]
     {
         didSet
         {
-            // Max Number of Columns
-            columns = matrix[0].count
             
             // Max Number of Rows
             rows = matrix.count
             
+            // Max Number of Columns
+            columns = matrix[0].count
+            
+            invalidMatrix = false
+
+            
+            for row in 0 ... rows - 1 {
+                if matrix[row].count != columns {
+                    invalidMatrix = true
+                    break
+                }
+                for column in 0 ... columns - 1 {
+                    if let _ = matrix[row][column] as? Int {
+                        
+                    }else {
+                        invalidMatrix = true
+                        break
+                    }
+                    
+                }
+                if invalidMatrix {
+                    break
+                }
+            }
+            
+            
             // Bool to indicate reached end of Matrix
             reached = false
-            
             // String representation of path taken
             path = ""
             
@@ -49,7 +72,7 @@ struct Challenge
     var reached : Bool = false
     var path : String = ""
     var sum : Int = 0
-    
+    var invalidMatrix : Bool = false
     // Initializer function used in instantiating an instance of a challenge
     init()
     {
@@ -71,6 +94,7 @@ struct Challenge
     // Main function used to implement the puzzle solution
     mutating func lookupBestRoute(limit : Int = 50)
     {
+        if !invalidMatrix {
         // Loop through the number of columns in attempt to find complete path
         for column in 0 ... self.columns
         {
@@ -81,10 +105,11 @@ struct Challenge
                 for row in 0 ..< rows
                 {
                     // Verify cell in matrix meets or is less than limit seeking
-                    if self.matrix[row][column] <= limit
+                    let value = self.matrix[row][column] as! Int
+                    if value <= limit
                     {
                         // Node found meets requirements and should be added as a viable route
-                        self.best_routes.append([(row , matrix[row][column])])
+                        self.best_routes.append([(row , value)])
                     }
                 }
             }
@@ -113,26 +138,29 @@ struct Challenge
                     //   ^
                     //  /
                     // /
-                    if lastItem.1 + self.matrix[prevIndex][column] <= limit
+                    var value = self.matrix[prevIndex][column] as! Int
+                    if lastItem.1 + value <= limit
                     {
-                        candidates.append((prevIndex , lastItem.1 + self.matrix[prevIndex][column]))
+                        candidates.append((prevIndex , lastItem.1 + value))
                     }
                     
                     // Check if Horizontal Node from current node is viable
                     //
                     // -------------------------------->
-                    if lastItem.1 + self.matrix[lastItem.0][column] <= limit
+                    value = self.matrix[lastItem.0][column] as! Int
+                    if lastItem.1 + value <= limit
                     {
-                        candidates.append((lastItem.0 , lastItem.1 + self.matrix[lastItem.0][column]))
+                        candidates.append((lastItem.0 , lastItem.1 + value))
                     }
                     
                     // Check if Bottom Node from current node is viable
                     // \
                     //  \
                     //   v
-                    if ( lastItem.1 + self.matrix[nextIndex][column] <= limit )
+                    value = self.matrix[nextIndex][column] as! Int
+                    if ( lastItem.1 + value <= limit )
                     {
-                        candidates.append((nextIndex , lastItem.1 + self.matrix[nextIndex][column]))
+                        candidates.append((nextIndex , lastItem.1 + value))
                     }
                     
                     // Loop through viable candidates to append to best routes
@@ -188,6 +216,7 @@ struct Challenge
                 }
             }
         }
+    }
     }
     
 }

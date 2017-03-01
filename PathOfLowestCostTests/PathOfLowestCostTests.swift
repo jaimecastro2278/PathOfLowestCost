@@ -21,125 +21,6 @@ class PathOfLowestCostTests: XCTestCase {
         super.tearDown()
     }
     
-    // Test Designed to Ensure Matrix is Initialized Successfully
-    func testMatrixSetupOnInitalization()
-    {
-        print("\nStart testGridSetupOnInitalization()\n")
-        
-        var challenge : Challenge = Challenge()
-        challenge.matrix = [
-                               [0, 1, 2, 3, 4, 5],
-                               [2, 4, 6, 8, 10, 12],
-                               [4, 8, 12, 16, 20, 24],
-                               [6, 12, 18, 24, 30, 36],
-                               [8, 16, 24, 32, 40, 48]
-                            ]
-        
-        print("\n--- Matrix Entered ---\n")
-        
-        print("\(challenge.matrix) \n")
-        
-        print("\n--- Testing First Row ---\n")
-        
-        var elementFromMatrixTesting : Int = challenge.matrix[0][0]
-        var expectedValue : Int = 0
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[0][1]
-        expectedValue = 1
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[0][2]
-        expectedValue = 2
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[0][3]
-        expectedValue = 3
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[0][4]
-        expectedValue = 4
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[0][5]
-        expectedValue = 5
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        print("\n--- Testing First Column ---\n")
-        
-        elementFromMatrixTesting = challenge.matrix[1][0]
-        expectedValue = 2
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[2][0]
-        expectedValue = 4
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[3][0]
-        expectedValue = 6
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[4][0]
-        expectedValue = 8
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        print("\n--- Testing Last Column ---\n")
-        
-        elementFromMatrixTesting = challenge.matrix[1][5]
-        expectedValue = 12
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[2][5]
-        expectedValue = 24
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[3][5]
-        expectedValue = 36
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[4][5]
-        expectedValue = 48
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        print("\n--- Testing Last Row ---\n")
-        
-        elementFromMatrixTesting = challenge.matrix[4][1]
-        expectedValue = 16
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[4][2]
-        expectedValue = 24
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[4][3]
-        expectedValue = 32
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        elementFromMatrixTesting = challenge.matrix[4][4]
-        expectedValue = 40
-        XCTAssert(elementFromMatrixTesting == expectedValue, "Expected Value (\(elementFromMatrixTesting) in Matrix is Incorrect! Expected Value is \(expectedValue).")
-        print("Testing: \(elementFromMatrixTesting) == \(expectedValue)")
-        
-        print("\nEnd testGridSetupOnInitalization()\n")
-    }
-    
     func testRowAndColumnCountCorrectlySet()
     {
         print("\nStart testRowAndColumnCountCorrectlySet()\n")
@@ -351,4 +232,55 @@ class PathOfLowestCostTests: XCTestCase {
         print("\nEnd testSolutionWithNegativeNodeValues()\n")
     }
     
+    // Test Invalid Characters Matrics
+    func testMatrixWithInvalidInput()
+    {
+        print("\nStart testGridSetupOnInitalization()\n")
+        
+        var challenge : Challenge = Challenge()
+        challenge.matrix = [
+            [5, 4, "H"],
+            [8, "M", 7],
+            [5,7,5]
+        ]
+        
+        print("\n--- Matrix Entered ---\n")
+        
+        print("\(challenge.matrix) \n")
+        
+        print("\n--- Testing First Row ---\n")
+        
+        XCTAssertTrue(challenge.invalidMatrix , "Valid Matrix")
+        
+        print("--- RESULTS ---")
+        
+        print(challenge.invalidMatrix ? "Invalid Matrix" : "Valid Matrix")
+        
+    }
+    
+    // Test Invalid Matrix with Diffrent lenght Rows
+    func testMatrixWithDiffernetRows()
+    {
+        print("\nStart testGridSetupOnInitalization()\n")
+        
+        var challenge : Challenge = Challenge()
+        challenge.matrix = [
+            [60, 3, 3, 6],
+            [6, 3, 4],
+            [5, 6, 18, 13, ]
+        ]
+        
+        print("\n--- Matrix Entered ---\n")
+        
+        print("\(challenge.matrix) \n")
+        
+        print("\n--- Testing First Row ---\n")
+        
+        XCTAssertTrue(challenge.invalidMatrix , "Valid Matrix")
+        
+        print("--- RESULTS ---")
+        
+        print(challenge.invalidMatrix ? "Invalid Matrix" : "Valid Matrix")
+        
+    }
 }
